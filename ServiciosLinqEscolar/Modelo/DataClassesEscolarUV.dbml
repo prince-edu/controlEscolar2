@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="escolarUV" Class="DataClassesEscolarUVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Alumno" Member="Alumno">
+    <Type Name="Alumno">
+      <Column Name="idAlumno" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="apellidoPaterno" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="apellidoMaterno" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="matricula" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="correo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fechaNacimiento" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="foto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="idCarrera" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Carrera_Alumno" Member="Carrera" ThisKey="idCarrera" OtherKey="idCarrera" Type="Carrera" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Carrera" Member="Carrera">
+    <Type Name="Carrera">
+      <Column Name="idCarrera" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="codigo" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="idFacultad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Carrera_Alumno" Member="Alumno" ThisKey="idCarrera" OtherKey="idCarrera" Type="Alumno" />
+      <Association Name="Facultad_Carrera" Member="Facultad" ThisKey="idFacultad" OtherKey="idFacultad" Type="Facultad" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Facultad" Member="Facultad">
+    <Type Name="Facultad">
+      <Column Name="idFacultad" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Facultad_Carrera" Member="Carrera" ThisKey="idFacultad" OtherKey="idFacultad" Type="Carrera" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuario">
+    <Type Name="Usuario">
+      <Column Name="idUsuario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="apellidoPaterno" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="apellidoMaterno" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
